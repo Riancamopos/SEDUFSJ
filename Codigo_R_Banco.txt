@@ -1,0 +1,68 @@
+# Instalar pacotes necessários (se ainda não tiver)
+if (!require("tidyr")) install.packages("tidyr")
+if (!require("dplyr")) install.packages("dplyr")
+
+# Carregar bibliotecas
+library(ggplot2)
+library(forecast)
+library(tidyr)
+library(dplyr)
+
+# 1. Dados reais por hora (das 09h às 16h)
+horas <- c("09h-10h", "10h-11h", "11h-12h", "12h-13h", "13h-14h", "14h-15h", "15h-16h")
+chegadas_reais <- c(7, 5, 3, 4, 6, 9, 10)
+
+# 2. Ajuste AR(1) manual (valores estimados anteriormente ou usando Arima)
+serie <- ts(chegadas_reais)
+modelo_ar1 <- Arima(serie, order = c(1, 0, 0))
+previsao_ar1 <- as.numeric(fitted(modelo_ar1))
+
+# 3. Distribuição ID - Binomial Negativa (Poisson Negativo)
+media <- mean(chegadas_reais)
+variancia <- var(chegadas_reais)
+p <- ifelse(variancia > media, media / variancia, 0.99)
+r <- ifelse(p < 1, media * p / (1 - p), 100)
+set.seed(123)
+id_simulada <- rnbinom(length(chegadas_reais), size = r, prob = p)
+
+# 4. Data frame para plotagem
+df_plot <- data.frame(
+  Hora = rep(horas, 3),
+  Chegadas = c(chegadas_reais, previsao_ar1, id_simulada),
+  Modelo = rep(c("Dados Reais", "Ajuste AR(1)", "Distribuição ID"), each = length(horas))
+)
+
+# 5. Gráfico com as 3 curvas
+ggplot(df_plot, aes(x = Hora, y = Chegadas, color = Modelo, linetype = Modelo, group = Modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c(
+    "Dados Reais" = "red",
+    "Ajuste AR(1)" = "blue",
+    "Distribuição ID" = "green4"
+  )) +
+  scale_linetype_manual(values = c(
+    "Dados Reais" = "solid",
+    "Ajuste AR(1)" = "dashed",
+    "Distribuição ID" = "dotted"
+  )) +
+  labs(
+    title = "Comparação de Modelos - Chegada de Clientes por Hora",
+    x = "Horário",
+    y = "Número de Clientes",
+    color = NULL,
+    linetype = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.text = element_text(size = 10)
+  )
+
+# 6. Tabela ponto a ponto com os valores por modelo
+tabela_modelos <- df_plot %>%
+  pivot_wider(names_from = Modelo, values_from = Chegadas)
+
+# Exibir tabela completa
+print(tabela_modelos, n = nrow(tabela_modelos))
