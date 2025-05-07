@@ -1,0 +1,1 @@
+Estão disponíveis os arquivos para a modelagem dos dados de entrada para uma simulação, com a análise dos dados com a utilização de código gerado em linguagem R versão 4.2.2, e os respectivos modelos de simulação gerados no software JaaSim versão 2025-04.
