@@ -1,0 +1,85 @@
+Simulation	SoftwareName	JaamSim	-
+Simulation	SoftwareVersion	2025-04	-
+Simulation	ConfigurationFile	C:\Users\hellk\Desktop\Banco\Dados Coletados\Banco_Real.cfg	-
+Simulation	ScenarioNumber	1.0	-
+Simulation	ScenarioIndex	{ 1 }	-
+Simulation	ReplicationNumber	1.0	-
+Simulation	RunNumber	1.0	-
+Simulation	RunIndex	{ 1 }	-
+Simulation	PresentTimeAndDate	mai. 08, 2025 19:58	-
+Simulation	PresentSimulationTime	8.0	h
+Simulation	x	0.0	-
+Simulation	RunDuration	8.0	h
+Simulation	InitializationDuration	0.0	h
+
+*** FileToMatrix ***
+
+FileToMatrix1	StateTimes[None]	8.0	h
+FileToMatrix1	TotalTime	8.0	h
+FileToMatrix1	NumberAdded	0.0	-
+FileToMatrix1	NumberProcessed	0.0	-
+
+*** EntityGenerator ***
+
+EntityGenerator1	StateTimes[Breakdown]	0.0	h
+EntityGenerator1	StateTimes[Idle]	0.14316666666666666	h
+EntityGenerator1	StateTimes[Maintenance]	0.0	h
+EntityGenerator1	StateTimes[Stopped]	0.0	h
+EntityGenerator1	StateTimes[Working]	7.856833333333333	h
+EntityGenerator1	TotalTime	8.0	h
+EntityGenerator1	Utilisation	0.9821041666666667	-
+EntityGenerator1	Commitment	0.9821041666666667	-
+EntityGenerator1	Availability	1.0	-
+EntityGenerator1	Reliability	1.0	-
+EntityGenerator1	NumberAdded	42.0	-
+EntityGenerator1	NumberProcessed	42.0	-
+
+*** EntitySink ***
+
+EntitySink1	StateTimes[None]	8.0	h
+EntitySink1	TotalTime	8.0	h
+EntitySink1	NumberAdded	41.0	-
+EntitySink1	NumberProcessed	41.0	-
+
+*** Queue ***
+
+Queue1	StateTimes[None]	8.0	h
+Queue1	TotalTime	8.0	h
+Queue1	NumberAdded	42.0	-
+Queue1	NumberProcessed	42.0	-
+Queue1	QueueLengthAverage	0.1828945840972226	-
+Queue1	QueueLengthStandardDeviation	0.40009855972846653	-
+Queue1	QueueLengthMinimum	0.0	-
+Queue1	QueueLengthMaximum	2.0	-
+Queue1	QueueLengthTimes[0]	6.579382136388887	h
+Queue1	QueueLengthTimes[1]	1.3780790544444472	h
+Queue1	QueueLengthTimes[2]	0.0425388091666668	h
+Queue1	QueueLengthFractions[0]	0.8224227670486108	-
+Queue1	QueueLengthFractions[1]	0.1722598818055559	-
+Queue1	QueueLengthFractions[2]	0.00531735114583335	-
+Queue1	QueueLengthCumulativeFractions[0]	0.8224227670486108	-
+Queue1	QueueLengthCumulativeFractions[1]	0.9946826488541667	-
+Queue1	QueueLengthCumulativeFractions[2]	1.0	-
+Queue1	AverageQueueTime	0.03483706363756621	h
+Queue1	NumberReneged	0.0	-
+
+*** Server ***
+
+Server1	StateTimes[Breakdown]	0.0	h
+Server1	StateTimes[Idle]	2.1950016991666668	h
+Server1	StateTimes[Maintenance]	0.0	h
+Server1	StateTimes[Stopped]	0.0	h
+Server1	StateTimes[Working]	5.804998300833333	h
+Server1	TotalTime	8.0	h
+Server1	Utilisation	0.7256247876041666	-
+Server1	Commitment	0.7256247876041666	-
+Server1	Availability	1.0	-
+Server1	Reliability	1.0	-
+Server1	NumberAdded	42.0	-
+Server1	NumberProcessed	41.0	-
+
+*** SimEntity ***
+
+SimEntity1	StateTimes[None]	8.0	h
+SimEntity1	TotalTime	8.0	h
+
